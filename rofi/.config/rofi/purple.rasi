@@ -1,0 +1,45 @@
+* {
+    bg: #1a1a2e;
+    bg-alt: #16213e;
+    fg: #e0e0e0;
+    fg-alt: #676e7d;
+    accent: #bb86fc;
+    
+    background-color: @bg;
+    text-color: @fg;
+}
+
+window {
+    width: 600px;
+    padding: 20px;
+    border: 2px;
+    border-color: @accent;
+}
+
+inputbar {
+    children: [prompt, entry];
+    spacing: 10px;
+}
+
+prompt {
+    text-color: @accent;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @fg-alt;
+}
+
+listview {
+    lines: 8;
+    spacing: 5px;
+}
+
+element {
+    padding: 8px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color: @bg;
+}

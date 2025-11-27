@@ -1,0 +1,23 @@
+[character]
+success_symbol = "[➜](bold purple)"
+error_symbol = "[✗](bold red)"
+
+[directory]
+style = "bold purple"
+truncation_length = 3
+
+[git_branch]
+symbol = " "
+style = "bold purple"
+
+[nodejs]
+symbol = " "
+style = "bold green"
+
+[dotnet]
+symbol = " "
+style = "bold blue"
+
+[docker_context]
+symbol = " "
+style = "bold cyan"

@@ -1,0 +1,63 @@
+" Tridactyl Configuration
+
+" Color scheme - dark/purple theme
+colorscheme dark
+
+" Smooth scrolling
+set smoothscroll true
+
+" Search engines
+set searchengine duckduckgo
+set searchurls.g https://www.google.com/search?q=
+set searchurls.gh https://github.com/search?q=
+set searchurls.yt https://www.youtube.com/results?search_query=
+
+" Hint characters (home row for German keyboard)
+set hintchars asdfghjkl
+
+" Scrolling (faster)
+bind j scrollline 10
+bind k scrollline -10
+bind d scrollpage 0.5
+bind u scrollpage -0.5
+bind gg scrollto 0
+bind G scrollto 100
+
+" Tab navigation
+bind J tabnext
+bind K tabprev
+bind x tabclose
+bind X undo
+
+" Tab movement
+bind > tabmove +1
+bind < tabmove -1
+
+" Copy URL
+bind yy clipboard yank
+
+" Find mode
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
+" Reader mode
+bind gr reader
+
+" New tab
+set newtab https://www.google.com
+
+" Ignore these sites (use normal browser controls)
+autocmd DocStart mail.google.com mode ignore
+autocmd DocStart youtube.com mode ignore
+
+" Search selection with default engine
+bind gs composite js document.getSelection().toString() | fillcmdline open
+
+" Native messenger for editor integration
+set editorcmd wezterm -e nvim
+
+" Don't run Tridactyl on some web sites
+blacklistadd mail.google.com
+blacklistadd youtube.com
