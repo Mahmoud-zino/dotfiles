@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = {}
 
 -- Auto-start tmux
-config.default_prog = { 'tmux', 'new-session', '-A', '-s', 'main' }
+config.default_prog = { 'tmux', 'new-session' }
 
 -- Color scheme - purple/magenta theme matching i3
 config.colors = {
