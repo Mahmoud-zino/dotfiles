@@ -29,3 +29,34 @@ setopt appendhistory
 setopt HIST_IGNORE_DUPS
 setopt HIST_FIND_NO_DUPS
 eval "$(zoxide init zsh)"
+# Bitwarden aliases
+alias bwu='export BW_SESSION=$(bw unlock --raw)'
+alias bwls='bw list items | jq -r ".[].name" | sort'
+alias bwsearch='bw list items --search'
+alias bwget='bw get item'
+alias bwpass='bw get password'
+alias bwuser='bw get username'
+
+# Pretty print search results
+bwfind() {
+  bw list items --search "$1" | jq -r '.[] | "[\(.name)]\n  User: \(.login.username // "N/A")\n  URL:  \(.login.uris[0].uri // "N/A")\n"'
+}
+# Update password in Bitwarden
+bwupdate() {
+  if [ -z "$1" ]; then
+    echo "Usage: bwupdate <item-name>"
+    return 1
+  fi
+  
+  local item_id=$(bw get item "$1" | jq -r '.id')
+  local temp_file=$(mktemp)
+  
+  bw get item "$1" > "$temp_file"
+  nvim "$temp_file"
+  
+  cat "$temp_file" | bw encode | bw edit item "$item_id"
+  rm "$temp_file"
+  
+  bw sync
+  echo "Password updated for: $1"
+}
