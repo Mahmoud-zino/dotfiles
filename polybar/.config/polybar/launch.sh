@@ -14,6 +14,15 @@ monitor_count=$(echo "$monitors" | wc -l)
 
 echo "Found $monitor_count monitor(s)"
 
+# Check if battery exists
+if [ -d "/sys/class/power_supply/BAT0" ] || [ -d "/sys/class/power_supply/BAT1" ]; then
+    echo "Battery detected - enabling battery module"
+    export SHOW_BATTERY=true
+else
+    echo "No battery detected - disabling battery module"
+    export SHOW_BATTERY=false
+fi
+
 if [ "$monitor_count" -eq 1 ]; then
     # Single monitor - launch main bar only
     MONITOR=$(echo "$monitors" | head -n 1) polybar main 2>&1 | tee -a /tmp/polybar-main.log & disown
