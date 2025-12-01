@@ -9,7 +9,6 @@ sudo apt install -y \
   polybar \
   rofi \
   feh \
-  picom \
   nitrogen \
   xclip \
   git \
@@ -19,7 +18,6 @@ sudo apt install -y \
   stow \
   tmux \
   zsh \
-  neovim \
   ranger \
   htop \
   ripgrep \
@@ -30,5 +28,7 @@ sudo apt install -y \
   fonts-powerline \
   python3-pip \
   unzip
+
+chsh -s /usr/bin/zsh || echo "Run 'chsh -s /usr/bin/zsh' manually if this fails"
 
 echo "✓ System packages installed!"

@@ -37,7 +37,6 @@ require("lazy").setup({
       vim.cmd([[colorscheme tokyonight-night]])
     end,
   },
-
   -- Telescope (fuzzy finder)
   {
     'nvim-telescope/telescope.nvim',
@@ -48,7 +47,6 @@ require("lazy").setup({
       { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Buffers' },
     },
   },
-
   -- File explorer
   {
     "nvim-tree/nvim-tree.lua",
@@ -60,28 +58,21 @@ require("lazy").setup({
       require("nvim-tree").setup()
     end,
   },
-
-  -- LSP Support with new Neovim 0.11 API
+  -- LSP installer (Mason only, no mason-lspconfig)
   {
     "williamboman/mason.nvim",
     config = function()
       require("mason").setup()
     end,
   },
-
+  -- Autocompletion capabilities
   {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
+    "hrsh7th/cmp-nvim-lsp",
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "svelte", "ts_ls", "tailwindcss" },
-        automatic_installation = true,
-      })
-      
-      -- Use new Neovim 0.11 native LSP config
+      -- Get capabilities for LSP
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       
-      -- Svelte LSP
+      -- Configure LSPs using Neovim 0.11 native API
       vim.lsp.config('svelte', {
         cmd = { 'svelteserver', '--stdio' },
         filetypes = { 'svelte' },
@@ -89,7 +80,6 @@ require("lazy").setup({
         capabilities = capabilities,
       })
       
-      -- TypeScript LSP
       vim.lsp.config('ts_ls', {
         cmd = { 'typescript-language-server', '--stdio' },
         filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
@@ -97,7 +87,6 @@ require("lazy").setup({
         capabilities = capabilities,
       })
       
-      -- Tailwind CSS LSP
       vim.lsp.config('tailwindcss', {
         cmd = { 'tailwindcss-language-server', '--stdio' },
         filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'svelte' },
@@ -109,12 +98,7 @@ require("lazy").setup({
       vim.lsp.enable('svelte')
       vim.lsp.enable('ts_ls')
       vim.lsp.enable('tailwindcss')
-    end,
-  },
-
-  {
-    "hrsh7th/cmp-nvim-lsp",
-    config = function()
+      
       -- LSP Keybindings
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
@@ -127,7 +111,6 @@ require("lazy").setup({
       })
     end,
   },
-
   -- Autocompletion
   {
     "hrsh7th/nvim-cmp",
@@ -161,7 +144,6 @@ require("lazy").setup({
       })
     end,
   },
-
   -- Treesitter (better syntax highlighting)
   {
     "nvim-treesitter/nvim-treesitter",
@@ -174,7 +156,6 @@ require("lazy").setup({
       })
     end,
   },
-
   -- Auto pairs
   {
     "windwp/nvim-autopairs",
@@ -182,7 +163,6 @@ require("lazy").setup({
       require("nvim-autopairs").setup()
     end,
   },
-
   -- Status line
   {
     "nvim-lualine/lualine.nvim",
@@ -191,7 +171,6 @@ require("lazy").setup({
       require('lualine').setup()
     end,
   },
-
   -- Markdown rendering in place
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -199,7 +178,6 @@ require("lazy").setup({
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
     config = function()
       require('render-markdown').setup({
-        -- GitHub-style rendering
         heading = {
           enabled = true,
           sign = true,

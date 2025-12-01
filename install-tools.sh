@@ -3,6 +3,12 @@ set -e
 
 echo "Installing additional tools..."
 
+# Wezterm terminal
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update
+sudo apt install -y wezterm
+
 # Starship prompt
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 
@@ -43,6 +49,11 @@ rm get-docker.sh
 
 # Bitwarden CLI
 sudo snap install bw
+
+# Neovim
+sudo add-apt-repository ppa:neovim-ppa/unstable -y
+sudo apt update
+sudo apt install -y neovim
 
 echo "✓ Additional tools installed!"
 echo "⚠ Log out and back in for Docker group to take effect"

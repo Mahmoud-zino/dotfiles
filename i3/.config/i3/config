@@ -5,6 +5,9 @@ set $mod Mod4
 # Font for window titles
 font pango:JetBrains Mono 10
 
+# Force full repaints
+force_display_urgency_hint 0 ms
+
 # Start XDG autostart .desktop files using dex
 exec --no-startup-id dex --autostart --environment i3
 
@@ -174,6 +177,5 @@ bar {
 # Autostart
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id dunst
-exec --no-startup-id picom -b
 exec --no-startup-id setxkbmap -option caps:escape
 exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080 --rate 60.00 --pos 0x0 --rotate normal --output DP-0 --primary --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate normal
