@@ -1,0 +1,28 @@
+# Sensitive files
+*.key
+*.pem
+*_rsa*
+*.env
+.env.*
+
+# SSH keys (actual files, not configs)
+.ssh/id_*
+.ssh/*.key
+.ssh/*.pem
+
+# Browser data
+.mozilla/
+.config/BraveSoftware/
+.config/google-chrome/
+
+# Password managers
+.config/Bitwarden/
+
+# Backup files
+*.bak
+*~
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
