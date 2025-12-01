@@ -168,7 +168,7 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = { "svelte", "typescript", "javascript", "css", "html", "lua" },
+        ensure_installed = { "svelte", "typescript", "javascript", "css", "html", "lua", "markdown", "markdown_inline" },
         highlight = { enable = true },
         indent = { enable = true },
       })
@@ -190,5 +190,37 @@ require("lazy").setup({
     config = function()
       require('lualine').setup()
     end,
+  },
+
+  -- Markdown rendering in place
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require('render-markdown').setup({
+        -- GitHub-style rendering
+        heading = {
+          enabled = true,
+          sign = true,
+          icons = { '󰲡 ', '󰲣 ', '󰲥 ', '󰲧 ', '󰲩 ', '󰲫 ' },
+        },
+        code = {
+          enabled = true,
+          sign = true,
+          style = 'full',
+          width = 'block',
+          left_pad = 2,
+          right_pad = 2,
+        },
+        bullet = {
+          enabled = true,
+          icons = { '●', '○', '◆', '◇' },
+        },
+      })
+    end,
+    keys = {
+      { '<leader>mp', '<cmd>RenderMarkdown toggle<cr>', desc = 'Toggle Markdown Rendering' },
+    },
   },
 })
